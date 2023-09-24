@@ -2,6 +2,7 @@ from django.shortcuts import render
 from .models import Tasks
 
 def index(request):
+    taskList = Tasks.objects.all()
     if request.method == "POST":
         title = request.POST.get("title")
         done = request.POST.get("done")
@@ -13,4 +14,4 @@ def index(request):
         img = request.FILES.get('img')
         task = Tasks(title = title, done = done, img = img)
         task.save()
-    return render(request, 'home.html')
+    return render(request, 'home.html', {'taskList': taskList})
