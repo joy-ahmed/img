@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block edit_task %}
+    <h1>Edit Task</h1>
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="title">Title</label>
+            <input type="text" class="form-control" id="title" name="title" value="{{ task.title }}">
+        </div>
+        <div class="form-group">
+            <input type="checkbox" class="form-check-input" id="done" name="done" {% if task.done %}checked{% endif %}>
+            <label class="form-check-label" for="done">Mark as done</label>
+        </div>
+        <div class="form-group">
+            <label for="img">Image</label>
+            <input type="file" class="form-control-file" id="img" name="img">
+        </div>
+        <button type="submit" class="btn btn-primary">Update Task</button>
+    </form>
+{% endblock edit_task %}
