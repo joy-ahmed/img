@@ -6,7 +6,7 @@ def index(request):
     if request.method == "POST":
         title = request.POST.get("title")
         done = request.POST.get("done")
-        
+
         if done == "on":
             done = True
         else:
@@ -40,3 +40,16 @@ def edit_task(request, task_id):
         'task': task
     }
     return render(request, 'edit_task.html', context)
+
+
+def delete_task(request, task_id):
+    task = Tasks.objects.get(id=task_id)
+    if request.method == "POST":
+        task.delete()
+        return redirect('home') 
+
+    context = {
+        'task': task
+    }
+
+    return render(request, 'delete.html', context)
