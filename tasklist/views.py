@@ -44,12 +44,12 @@ def edit_task(request, task_id):
 
 def delete_task(request, task_id):
     task = Tasks.objects.get(id=task_id)
-    if request.method == "POST":
-        task.delete()
-        return redirect('home') 
+    # if request.method == "POST":
+    task.delete()
+    return redirect('home') 
 
-    context = {
-        'task': task
-    }
+    # context = {
+    #     'task': task
+    # }
 
-    return render(request, 'delete.html', context)
+    # return redirect('/')
